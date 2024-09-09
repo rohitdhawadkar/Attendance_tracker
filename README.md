@@ -126,6 +126,7 @@ This project is a college-based **Attendance Tracker** application where student
 ## Directory Structure
 
 ### Backend:
+```bash
 backend/
 ├── config/                    # DB and server configuration
 ├── controllers/               # Request handling logic
@@ -134,6 +135,7 @@ backend/
 ├── middleware/                # JWT authentication, error handling
 ├── server.js                  # Main server entry point
 └── package.json               # Backend dependencies
+
 
 
 
@@ -158,6 +160,15 @@ Contributions are welcome! If you would like to contribute, please follow these 
     Push to your branch (git push origin feature-name).
     Create a pull request.
 
+    frontend/
+    ├── public/                    # Static files (index.html, favicon)
+    ├── src/                       # React components, pages, services
+    │   ├── components/            # Reusable UI components
+    │   ├── pages/                 # Page components (Login, Dashboard)
+    │   ├── services/              # API interaction (Axios)
+    │   ├── App.js                 # Main App component
+    │   └── index.js               # App entry point
+    └── package.json               # Frontend dependencies
 
 
     ## Contributing
