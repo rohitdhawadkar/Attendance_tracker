@@ -26,15 +26,15 @@ This project is a college-based **Attendance Tracker** application where student
 ## Tech Stack
 
 ### Backend:
-- **Node.js**: JavaScript runtime environment
-- **Express**: Web framework for Node.js
-- **MongoDB**: NoSQL database (hosted on MongoDB Atlas)
-- **JWT (JSON Web Tokens)**: For user authentication and secure API routes
+- **Node.js**: JavaScript runtime environment to run server-side code.
+- **Express**: A fast, minimalist web framework for Node.js to handle routes, requests, and middleware.
+- **MongoDB**: A NoSQL database (hosted on MongoDB Atlas) used for storing users and attendance records.
+- **JWT (JSON Web Tokens)**: For user authentication and securing API routes.
 
 ### Frontend:
-- **React.js**: JavaScript library for building user interfaces
-- **Axios**: For making API requests from the frontend
-- **React Router**: For handling frontend routing
+- **React.js**: A popular JavaScript library for building interactive user interfaces.
+- **Axios**: A promise-based HTTP client used for making API requests from the frontend.
+- **React Router**: A library used to manage client-side routing in React applications.
 
 ## Backend Setup
 
@@ -114,53 +114,6 @@ This project is a college-based **Attendance Tracker** application where student
   "name": "String",
   "email": "String",
   "password": "String",
-  "role": "String" // e.g., "student" or "teacher"
+  "role": "String"
 }
-
-{
-  "user": "ObjectId", // Reference to the user marking attendance
-  "date": "Date",
-  "status": "String" // e.g., "Present" or "Absent"
-}
-```
-## Directory Structure
-
-### Backend:
-```bash
-backend/
-├── config/                    # DB and server configuration
-├── controllers/               # Request handling logic
-├── models/                    # Mongoose schemas for User and Attendance
-├── routes/                    # Route definitions for API
-├── middleware/                # JWT authentication, error handling
-├── server.js                  # Main server entry point
-└── package.json               # Backend dependencies
-
-
-
-
-
-
-
-    frontend/
-    ├── public/                    # Static files (index.html, favicon)
-    ├── src/                       # React components, pages, services
-    │   ├── components/            # Reusable UI components
-    │   ├── pages/                 # Page components (Login, Dashboard)
-    │   ├── services/              # API interaction (Axios)
-    │   ├── App.js                 # Main App component
-    │   └── index.js               # App entry point
-    └── package.json               # Frontend dependencies
-
-
-    ## Contributing
-
-    Contributions are welcome! If you would like to contribute, please follow these steps:
-
-    1. Fork the repository.
-    2. Create a new branch (`git checkout -b feature-name`).
-    3. Make your changes.
-    4. Commit your changes (`git commit -m 'Add new feature'`).
-    5. Push to your branch (`git push origin feature-name`).
-    6. Create a pull request.
 ```
