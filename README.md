@@ -122,3 +122,51 @@ This project is a college-based **Attendance Tracker** application where student
   "date": "Date",
   "status": "String" // e.g., "Present" or "Absent"
 }
+
+## Directory Structure
+
+### Backend:
+backend/
+├── config/                    # DB and server configuration
+├── controllers/               # Request handling logic
+├── models/                    # Mongoose schemas for User and Attendance
+├── routes/                    # Route definitions for API
+├── middleware/                # JWT authentication, error handling
+├── server.js                  # Main server entry point
+└── package.json               # Backend dependencies
+
+
+
+### Frontend:
+
+frontend/
+├── public/                    # Static files (index.html, favicon)
+├── src/                       # React components, pages, services
+│   ├── components/            # Reusable UI components
+│   ├── pages/                 # Page components (Login, Dashboard)
+│   ├── services/              # API interaction (Axios)
+│   ├── App.js                 # Main App component
+│   └── index.js               # App entry point
+└── package.json               # Frontend dependencies
+
+Contributions are welcome! If you would like to contribute, please follow these steps:
+
+    Fork the repository.
+    Create a new branch (git checkout -b feature-name).
+    Make your changes.
+    Commit your changes (git commit -m 'Add new feature').
+    Push to your branch (git push origin feature-name).
+    Create a pull request.
+
+
+
+    ## Contributing
+
+    Contributions are welcome! If you would like to contribute, please follow these steps:
+
+    1. Fork the repository.
+    2. Create a new branch (`git checkout -b feature-name`).
+    3. Make your changes.
+    4. Commit your changes (`git commit -m 'Add new feature'`).
+    5. Push to your branch (`git push origin feature-name`).
+    6. Create a pull request.
