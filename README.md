@@ -116,3 +116,9 @@ This project is a college-based **Attendance Tracker** application where student
   "password": "String",
   "role": "String" // e.g., "student" or "teacher"
 }
+
+{
+  "user": "ObjectId", // Reference to the user marking attendance
+  "date": "Date",
+  "status": "String" // e.g., "Present" or "Absent"
+}
