@@ -1,20 +1,24 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import Register from './Register.js';
-import Login from './Login.js';
-
-
+import express from "express";
+import cors from "cors";
+import registerUser from "./routes/registerRoute.js";
+import login from "./routes/loginRoute.js";
+import connectDB from "./config/db.js";
 
 const app = express();
+
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/register", Register);
-app.use("/login", Login);
+connectDB();
 
-const port = 5000;
+app.post("/register", registerUser);
+app.post("/login", login);
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+});
+
+const port = 5001;
 app.listen(port, () => {
-  console.log(`Server is running on port:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
