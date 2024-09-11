@@ -14,10 +14,6 @@ connectDB();
 app.post("/register", registerUser);
 app.post("/login", login);
 
-app.get("/health", (req, res) => {
-  res.status(200).json({ message: "Server is running" });
-});
-
 const port = 5001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
