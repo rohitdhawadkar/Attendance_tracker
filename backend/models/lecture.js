@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Class from "./class.js";
+import Class from "./classSchema.js";
 const lectureSchema = new mongoose.Schema({
   topic: {
     type: String,
