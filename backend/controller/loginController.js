@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import user from "../models/user.js";
 import { z } from "zod";
+import student from "../models/user.js";
 
 const login = async (req, res) => {
   try {
@@ -18,13 +19,18 @@ const login = async (req, res) => {
       return res.status(200).json({ msg: "invalid password" });
     }
 
-    const payload = {
-      username: User.username,
+    // const generateToken = (username) => {
+    //   return jwt.sign({ username: username }, process.env.JWT_SECRET, {
+    //     expiresIn: "1h",
+    //   });
+    // };
+    const generateToken = (student) => {
+      return jwt.sign({ username: username }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
     };
-
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    // Example in the login or registration controller
+    const token = generateToken(user.username); // Assuming `user` is the logged-in or registered user object
 
     return res.status(200).json({ token });
   } catch (error) {
