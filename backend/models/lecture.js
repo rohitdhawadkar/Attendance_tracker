@@ -1,22 +1,19 @@
 import mongoose from "mongoose";
 import Class from "./classSchema.js";
 const lectureSchema = new mongoose.Schema({
-  topic: {
+  subject: {
     type: String,
     required: true,
   },
-  dayOfWeek: {
-    type: String,
+  class: {
+    type: mongoose.Schema.Types.ObjectId, // Use ObjectId to reference another model
+    ref: "Class", // Reference the Class model
     required: true,
   },
   time: {
     type: String,
     required: true,
-  },
-  class: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Class",
-    required: true,
+    match: /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, // Enforces 'HH:mm' format (24-hour time)
   },
 });
 
