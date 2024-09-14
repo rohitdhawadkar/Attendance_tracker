@@ -1,13 +1,13 @@
-import Class from "../models/Class.js";
-import Lecture from "../models/Lecture.js";
+import Class from "../models/class.js";
 
 export const addClass = async (req, res) => {
   const { className } = req.body;
+  console.log("User ID from req:", req.userId);
 
   try {
     const newClass = new Class({
       className,
-      user: req.userId, // User who is adding the class
+      student: req.userId,
     });
 
     await newClass.save();
@@ -17,3 +17,5 @@ export const addClass = async (req, res) => {
     res.status(500).json({ message: "Server error while adding class" });
   }
 };
+
+export default addClass;

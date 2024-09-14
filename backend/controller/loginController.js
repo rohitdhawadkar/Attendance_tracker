@@ -1,15 +1,15 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import user from "../models/user.js";
+
 import { z } from "zod";
-import student from "../models/user.js";
+import User from "../models/user.js";
 
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const User = await user.findOne({ username });
+    const CurrentUser = await User.findOne({ username });
 
-    if (!User) {
+    if (!CurrentUser) {
       return res.status(200).json({ msg: "user not found" });
     }
 
@@ -30,7 +30,7 @@ const login = async (req, res) => {
       });
     };
     // Example in the login or registration controller
-    const token = generateToken(user.username); // Assuming `user` is the logged-in or registered user object
+    const token = generateToken(User.username); // Assuming `user` is the logged-in or registered user object
 
     return res.status(200).json({ token });
   } catch (error) {
