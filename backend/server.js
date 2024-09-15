@@ -3,10 +3,9 @@ import cors from "cors";
 import registerUser from "./routes/registerRoute.js";
 import login from "./routes/loginRoute.js";
 import connectDB from "./config/db.js";
-// import attendanceRoute from "./routes/attendanceRoute.js";
 import classRoute from "./routes/classRoute.js";
-// import lectureRoute from "./routes/lectureRoute.js";
-import createStudent from "./controller/studentCOntroller.js";
+import lectureRoute from "./routes/lectureRoute.js";
+import createStudent from "./controller/studentController.js";
 
 const app = express();
 
@@ -17,10 +16,10 @@ connectDB();
 
 app.post("/register", registerUser);
 app.post("/login", login);
-// app.post("/markAttendance", attendanceRoute);
 app.post("/addClass", classRoute);
 app.post("/createStudent", createStudent);
-// app.post("/addlecture", lectureRoute);
+
+app.use("/lectures", lectureRoute);
 
 const port = 5001;
 app.listen(port, () => {
