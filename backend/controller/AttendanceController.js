@@ -1,24 +1,25 @@
 import Attendance from "../models/attendance.js";
 import Lecture from "../models/lecture.js";
-import Student from "../models/Student.js";
+import User from "../models/user.js";
+
 
 export const createAttendance = async (req, res) => {
   try {
-    const { lectureId, studentId, status } = req.body;
+    const { lectureId, UserId, status } = req.body;
 
     const lecture = await Lecture.findById(lectureId);
     if (!lecture) {
       return res.status(404).json({ error: "Lecture not found" });
     }
 
-    const student = await Student.findById(studentId);
-    if (!student) {
+    const user = await User.findById(UserId);
+    if (!user) {
       return res.status(404).json({ error: "Student not found" });
     }
 
     const newAttendance = new Attendance({
       lecture: lectureId,
-      student: studentId,
+      User: UserId,
       status,
     });
 
@@ -70,8 +71,8 @@ export const getAttendanceByLecture = async (req, res) => {
 
 export const getAttendanceByStudent = async (req, res) => {
   try {
-    const { studentId } = req.params;
-    const attendanceRecords = await Attendance.find({ student: studentId })
+    const { UserId } = req.params;
+    const attendanceRecords = await Attendance.find({ student: UserId })
       .populate("lecture", "subject time")
       .populate("student", "name");
 

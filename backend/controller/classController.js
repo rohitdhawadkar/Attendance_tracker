@@ -2,7 +2,7 @@ import Class from "../models/class.js";
 
 export const addClass = async (req, res) => {
   const { className } = req.body;
-  console.log("User ID from req:", req.userId);
+
 
   try {
     const newClass = new Class({
