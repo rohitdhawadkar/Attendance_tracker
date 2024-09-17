@@ -4,22 +4,23 @@ const attendanceSchema = new mongoose.Schema(
   {
     lecture: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Lecture", // Reference to the Lecture model
+      ref: "Lecture",
       required: true,
     },
     status: {
       type: String,
-      enum: ["Present", "Absent"], // Only allows 'Present' or 'Absent'
+      enum: ["Present", "Absent"],
       required: true,
     },
-    student: {
+    User: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Student", // Reference to the Student model
+      ref: "User",
       required: true,
     },
   },
   { timestamps: true },
-); // Adds createdAt and updatedAt fields
+);
 
 const Attendance = mongoose.model("Attendance", attendanceSchema);
+
 export default Attendance;
