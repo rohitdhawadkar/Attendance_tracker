@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const attendanceSchema = z.object({
-  status: z.enum(["present", "absent"]), // Validating status as either "present" or "absent"
+  status: z.enum(["Present", "Absent"]), 
 });
 
 export default attendanceSchema;
