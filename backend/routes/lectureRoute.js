@@ -3,14 +3,21 @@ import auth from "../middleware/auth.js";
 import {
   createLecture,
   getLecturesByDayForClass,
+  updateLecture,
+  deleteLecture
+
 } from "../controller/lectureController.js";
+import v from "../middleware/validation.js";
+import LectureSchemaValidation from "../validations/lectureSchema.js"
 
 const router = express.Router();
 
-// POST route for adding a lecture (with authentication)
-router.post("/addlecture", auth, createLecture);
+router.post("/addlecture", auth,v(LectureSchemaValidation), createLecture);
 
-// GET route for retrieving lectures by day for a specific class
 router.get("/getlectureforday/:day/:classId", auth, getLecturesByDayForClass);
+
+router.put("updateLecture/:id",auth,updateLecture);
+
+router.delete("deleteLecture/:id",auth,deleteLecture);
 
 export default router;
