@@ -31,7 +31,7 @@ const lectureSchema = new mongoose.Schema({
       "Friday",
       "Saturday",
       "Sunday",
-    ], // Restrict values to days of the week
+    ],
     required: true,
   },
 });
