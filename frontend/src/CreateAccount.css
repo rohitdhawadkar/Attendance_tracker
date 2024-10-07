@@ -1,0 +1,98 @@
+/* Background and container styling */
+.create-account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f2ee;
+}
+
+.form-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading and paragraph styles */
+.form-box h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.form-box p {
+    color: #000000;
+    font-size: 16px;
+}
+
+/* Form input styles */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #dfdeda;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #b2b2b2;
+}
+
+.password-guidelines ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+.password-guidelines ul li {
+    font-size: 14px;
+    color: #000000;
+}
+
+/* Button styles */
+.sign-in-btn {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 0;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sign-in-btn:hover {
+    background-color: #333333;
+}
+
+/* Terms and conditions styling */
+.terms {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #000000;
+}
+
+.terms a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.terms a:hover {
+    color: #555555;
+}
