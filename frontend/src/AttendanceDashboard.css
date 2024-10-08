@@ -1,0 +1,172 @@
+/* General Layout */
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;800&display=swap");
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Lexend Deca", sans-serif; /* Apply Lexend Deca globally */
+}
+.dashboard {
+    padding: 20px;
+    font-family: "Lexand Deca", sans-serif;
+    background-color: #f9fafb; /* Light background */
+}
+
+/* Header with Search Bar */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.nav-icons .icon {
+    font-size: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* Attendance Card */
+.attendance-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.attendance-card h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.total-btn {
+    display: block;
+    padding: 10px 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f3f4f6;
+}
+
+.attendance-chart {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.theory-color {
+    background-color: #374151;
+}
+
+.practical-color {
+    background-color: #3b82f6;
+}
+
+/* Upcoming Lecture/Practical Card */
+.upcoming-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upcoming-card h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.lecture-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.lecture-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f3f4f6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.subject {
+    font-weight: bold;
+}
+
+.time {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
