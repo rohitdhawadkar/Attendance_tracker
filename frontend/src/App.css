@@ -1,36 +1,56 @@
-body {
+/* General Styles */
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;400;500;700;900&display=swap");
+
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: "Arial", sans-serif;
-    background-color: #f6f6f6;
+    padding: 0;
+    font-family: "Lexend Deca", sans-serif; /* Apply Lexend Deca globally */
+}
+
+body {
+    background-color: #f4f2ee; /* Light background */
+    height: 100vh; /* Ensure it covers the entire viewport */
+    display: flex; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    align-items: center;
+}
+
+.login-label {
+    font-weight: 300;
+    color: #393e46;
 }
 
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f6f6f6;
+    width: 100%; /* Full width */
+    height: 100vh; /* Full height */
 }
 
 .login-box {
-    background-color: white;
-    padding: 40px;
-    width: 400px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* White background for the form */
+    width: 450px; /* Wider width for the form box */
+    padding: 60px 40px; /* More padding for a taller form */
+    border: 1px solid #dfdeda; /* Subtle border */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     text-align: center;
 }
 
 .login-title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 36px; /* Adjust title size */
+    font-weight: 500; /* Bold */
+    color: #000000;
+    margin-bottom: 10px;
 }
 
 .login-subtitle {
-    color: #6b6b6b;
-    font-size: 14px;
-    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 300;
+    color: ##393e46;
+    margin-bottom: 30px;
 }
 
 .login-form {
@@ -39,44 +59,39 @@ body {
 }
 
 .login-input {
-    margin-bottom: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #dcdcdc;
-    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px solid #dfdeda;
+    border-radius: 8px;
+    padding: 15px; /* Bigger padding for input fields */
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .login-button {
-    background-color: black;
-    color: white;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 30px;
+    background-color: #000000;
+    color: #ffffff;
     border: none;
+    border-radius: 5px; /* Rounded button */
+    padding: 15px;
+    font-size: 18px; /* Button text size */
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.signup-text {
-    font-size: 14px;
-    color: #6b6b6b;
-    margin-top: 16px;
+.login-button:disabled {
+    background-color: #444444;
+    cursor: not-allowed;
 }
 
-.signup-text a {
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.signup-text a:hover {
-    text-decoration: underline;
+.login-button:hover:not(:disabled) {
+    background-color: #333333;
 }
 
 .login-message {
-    font-size: 14px;
-    margin-top: 12px;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
 .success {
@@ -86,17 +101,19 @@ body {
 .error {
     color: red;
 }
-.signup-link {
-    color: black; /* Or any color you prefer */
-    cursor: pointer; /* Indicates it's clickable */
-    text-decoration: underline; /* Optional: adds underline like a link */
+
+.signup-text {
+    margin-top: 30px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.69);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.signup-link {
+    cursor: pointer;
+    color: #000000;
+    text-decoration: underline;
+}
+
+.signup-link:hover {
+    font-weight: bold;
 }
