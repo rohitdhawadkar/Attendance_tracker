@@ -1,31 +1,45 @@
-/* Background and container styling */
-.create-account-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f2ee;
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;800&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Lexend Deca", sans-serif; /* Apply Lexend Deca globally */
 }
 
+.create-account-container .form-box .create-Account-Text {
+    font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.create-Account-Text {
+    font-size: 32px; /* Adjust font size */
+    font-weight: 100; /* Bold for emphasis */
+    color: #000000; /* Black color */
+    margin-bottom: 10px; /* Space below the title */
+}
 .form-box {
     background-color: #ffffff;
     padding: 40px;
-    border-radius: 10px;
+    border-radius: 12px;
     width: 450px;
     text-align: center;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Heading and paragraph styles */
 .form-box h1 {
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 800;
     color: #000000;
 }
 
 .form-box p {
-    color: #000000;
-    font-size: 16px;
+    font-size: 13px; /* Adjust font size */
+    font-weight: 350; /* Regular font weight */
+    color: #666666; /* Gray color for subtitle */
+    margin-bottom: 20px;
 }
 
 /* Form input styles */
@@ -34,6 +48,7 @@ label {
     text-align: left;
     margin-bottom: 8px;
     font-size: 16px;
+    font-weight: 600;
 }
 
 input[type="text"],
@@ -44,6 +59,7 @@ input[type="password"] {
     border: 1px solid #dfdeda;
     border-radius: 5px;
     font-size: 16px;
+
     box-sizing: border-box;
 }
 
@@ -52,23 +68,44 @@ input[type="password"]::placeholder {
     color: #b2b2b2;
 }
 
+/* Password guidelines */
+
+/* /* Custom bullet point with a rounded circle */
+.password-guidelines ul li::before {
+    content: "";
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 50%;
+}
+/* Password guidelines bullet style */
 .password-guidelines ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px; /* Adjust gap between columns */
 }
 
 .password-guidelines ul li {
-    font-size: 14px;
-    color: #000000;
+    font-size: 12px;
+    color: #666666;
+    position: relative;
+    padding-left: 20px; /* Increased padding for spacing */
+    margin-bottom: 10px;
 }
 
 /* Button styles */
 .sign-in-btn {
     background-color: #000000;
     color: #ffffff;
-    padding: 10px 0;
+    padding: 12px 0;
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -95,4 +132,9 @@ input[type="password"]::placeholder {
 
 .terms a:hover {
     color: #555555;
+}
+
+.us,
+.ps {
+    font-weight: 300;
 }
