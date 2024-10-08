@@ -1,0 +1,180 @@
+/* Login */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #f4f2ee;
+
+/* Rectangle 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 673px;
+height: 693px;
+left: 383px;
+top: 117px;
+
+background: #ffffff;
+border: 1px solid #dfdeda;
+border-radius: 20px;
+
+/* Login */
+
+position: absolute;
+width: 370px;
+height: 31px;
+left: 535px;
+top: 173px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 5px;
+/* or 12% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+/* Enter your credentials to access your account */
+
+position: absolute;
+width: 718px;
+height: 79px;
+left: 361px;
+top: 197px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 5px;
+/* or 31% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+/* Password */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 591px;
+height: 49px;
+left: 424px;
+top: 464px;
+
+background: #ffffff;
+border: 1px solid #dfdeda;
+border-radius: 8px;
+
+/* Username */
+
+position: absolute;
+width: 718px;
+height: 79px;
+left: 115px;
+top: 297px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 5px;
+/* or 28% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: rgba(0, 0, 0, 0.87);
+
+/* Password */
+
+position: absolute;
+width: 718px;
+height: 79px;
+left: 113px;
+top: 410px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 5px;
+/* or 28% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: rgba(0, 0, 0, 0.87);
+
+/* Password */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 591px;
+height: 49px;
+left: 424px;
+top: 351px;
+
+background: #ffffff;
+border: 1px solid #dfdeda;
+border-radius: 8px;
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 591px;
+height: 54px;
+left: 415px;
+top: 590px;
+
+background: #000000;
+border-radius: 180px;
+
+/* Login */
+
+position: absolute;
+width: 718px;
+height: 79px;
+left: 352px;
+top: 577px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 5px;
+/* or 25% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #ffffff;
+
+/* Don’t have an an account? Sign Up */
+
+position: absolute;
+width: 676px;
+height: 64px;
+left: 373px;
+top: 656px;
+
+font-family: "Lexend Deca";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 5px;
+/* or 31% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: rgba(0, 0, 0, 0.69);
