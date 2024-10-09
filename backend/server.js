@@ -7,6 +7,7 @@ import login from "./routes/loginRoute.js";
 import connectDB from "./config/db.js";
 import classRoute from "./routes/classRoute.js";
 import lectureRoute from "./routes/lectureRoute.js";
+import logoutRoute from "./routes/logoutRoute.js";
 
 import a from "./routes/AttendanceRoute.js";
 
@@ -34,7 +35,7 @@ app.use("/attendance", a);
 app.post("/register", registerUser);
 app.post("/login", login);
 app.post("/addClass", classRoute);
-
+app.post("/logout", logoutRoute);
 app.use("/lectures", lectureRoute);
 
 const port = 3001;
