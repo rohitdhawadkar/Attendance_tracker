@@ -22,8 +22,15 @@ function App() {
       });
 
       if (response.data.msg === "Login successful") {
+        const { token, classId } = response.data; // Assume your server returns a token
+
+        // Store the JWT and classId in local storage
+        localStorage.setItem("token", token);
+        localStorage.setItem("classId", classId); // Optionally store classId
+
         setMessage("Logged in successfully!");
 
+        // Redirect to dashboard after a short delay
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
@@ -32,6 +39,7 @@ function App() {
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
+      console.error("Login error:", error); // Log the error for debugging
     } finally {
       setIsSubmitting(false);
     }
