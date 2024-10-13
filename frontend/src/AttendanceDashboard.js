@@ -9,19 +9,54 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AttendanceDashboard = () => {
   const [schedule, setSchedule] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false); // State to toggle dropdown
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [activeLecture, setActiveLecture] = useState(null);
+  const [attendance, setAttendance] = useState({});
+  const [showNoLecturesPopup, setShowNoLecturesPopup] = useState(false);
   const navigate = useNavigate();
+
+  // Get the current day name
+  const getCurrentDay = () => {
+    const today = new Date();
+    const options = { weekday: "long" };
+    return today.toLocaleDateString("en-US", options);
+  };
+
   useEffect(() => {
-    const fetchedSchedule = [
-      { subject: "Operating System", time: "10:00 am" },
-      { subject: "Database Management System", time: "11:00 am" },
-      { subject: "Cloud Computing", time: "01:45 am" },
-      { subject: "Computer Architecture", time: "02:45 am" },
-      { subject: "Computer Networks", time: "03:00 am" },
-      { subject: "Cloud Computing", time: "10:00 am" },
-    ];
-    setSchedule(fetchedSchedule);
+    const token = localStorage.getItem("token");
+    const classId = localStorage.getItem("classId");
+    const day = getCurrentDay();
+
+    if (token && classId) {
+      axios
+        .get(
+          `http://localhost:3001/lectures/getlectureforday/${day}/${classId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((response) => {
+          const fetchedSchedule = response.data;
+          setSchedule(fetchedSchedule);
+
+          if (fetchedSchedule.length === 0) {
+            setShowNoLecturesPopup(true);
+          } else {
+            setShowNoLecturesPopup(false);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching attendance data:", error);
+          if (error.response && error.response.status === 401) {
+            navigate("/login");
+          }
+        });
+    } else {
+      console.error("Token or Class ID not found in local storage");
+      navigate("/login");
+    }
   }, []);
 
   const chartData = {
@@ -37,13 +72,15 @@ const AttendanceDashboard = () => {
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
   const handleLogout = () => {
     axios
       .post("/logout", {}, { withCredentials: true })
       .then((response) => {
         if (response.status === 200) {
           console.log("Logged out successfully");
-
+          localStorage.removeItem("token");
+          localStorage.removeItem("classId");
           setTimeout(() => {
             navigate("/login");
           }, 1000);
@@ -56,13 +93,26 @@ const AttendanceDashboard = () => {
       });
   };
 
+  const startSession = (index) => {
+    setActiveLecture(index);
+  };
+
+  const markAttendance = (index, status) => {
+    setAttendance({ ...attendance, [index]: status });
+    setActiveLecture(null);
+  };
+
+  const handleAddLecture = () => {
+    setShowNoLecturesPopup(false);
+    navigate("/add-lecture");
+  };
+
   return (
     <div className="dashboard">
       {/* Header with search and icons */}
       <div className="header">
         <input type="text" placeholder="Search..." className="search-bar" />
         <div className="nav-icons">
-          {/* Profile Text instead of Icon */}
           <div className="profile-container">
             <span onClick={toggleDropdown} style={{ cursor: "pointer" }}>
               Profile
@@ -82,7 +132,7 @@ const AttendanceDashboard = () => {
 
       {/* Content area */}
       <div className="content">
-        {/* Attendance Card */}
+        <h1>Today is {getCurrentDay()}</h1>
         <div className="attendance-card">
           <h2>Current Attendance</h2>
           <button className="total-btn">Total</button>
@@ -98,8 +148,6 @@ const AttendanceDashboard = () => {
             </span>
           </div>
         </div>
-
-        {/* Upcoming Lectures Card */}
         <div className="upcoming-card">
           <h2>Upcoming Lecture/Practical</h2>
           <div className="lecture-list">
@@ -107,11 +155,60 @@ const AttendanceDashboard = () => {
               <div key={index} className="lecture-item">
                 <span className="subject">{lecture.subject}</span>
                 <span className="time">{lecture.time}</span>
+
+                {attendance[index] ? (
+                  <span className="attendance-status">
+                    {attendance[index] === "Present"
+                      ? "✔️ Present"
+                      : "❌ Absent"}
+                  </span>
+                ) : activeLecture === index ? (
+                  <>
+                    <button
+                      className="attendance-btn"
+                      onClick={() => markAttendance(index, "Present")}
+                    >
+                      Present
+                    </button>
+                    <button
+                      className="attendance-btn"
+                      onClick={() => markAttendance(index, "Absent")}
+                    >
+                      Absent
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    className="conduct-btn"
+                    onClick={() => startSession(index)}
+                  >
+                    Conduct Session
+                  </button>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Popup for no lectures */}
+      {showNoLecturesPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h3>No Lectures Found</h3>
+            <p>It looks like there are no lectures scheduled for today.</p>
+            <button onClick={handleAddLecture} className="add-lecture-btn">
+              Add Lecture
+            </button>
+            <button
+              onClick={() => setShowNoLecturesPopup(false)}
+              className="close-popup-btn"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
