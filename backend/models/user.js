@@ -11,6 +11,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Class", // Referencing the Class model
+      required: true, // Ensure each user is associated with a class
+    },
   },
   { timestamps: true },
 );
