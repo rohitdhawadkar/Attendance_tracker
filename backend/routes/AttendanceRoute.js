@@ -14,13 +14,13 @@ import v from "../middleware/validation.js";
 
 const router = express.Router();
 
-router.post("/", auth,v(attendanceSchema), createAttendance);
+router.post("/", auth, v(attendanceSchema), createAttendance);
 
 router.get("/", getAllAttendance);
 
 router.get("/lecture/:lectureId", getAttendanceByLecture);
 
-router.get("/student/:studentId", getAttendanceByStudent);
+router.get("/user/:userId", getAttendanceByStudent);
 
 router.put("/:id", updateAttendance);
 
