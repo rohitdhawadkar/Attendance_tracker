@@ -12,10 +12,14 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/login",
+        {
+          username,
+          password,
+        },
+        { withCredentials: true },
+      );
       console.log("Login successful:", response.data);
 
       setSuccessMessage(`Login successful: Welcome ${response.data.username}`); // Set success message
