@@ -27,14 +27,20 @@ app.use(
   }),
 );
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+    credentials: true, // Enable sending cookies
+  }),
+);
+
 app.use(express.json());
 
 connectDB();
 app.use("/attendance", a);
 app.post("/register", registerUser);
 app.post("/login", login);
-app.post("/addClass", classRoute);
+app.use("/class", classRoute);
 app.post("/logout", logoutRoute);
 app.use("/lectures", lectureRoute);
 
