@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const CreateAccount = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [className, setClassName] = useState(""); // State for class input
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -17,13 +18,20 @@ const CreateAccount = () => {
     setMessage("");
 
     try {
+      const classResponse = await axios.post("http://localhost:3001/addclass", {
+        className,
+      });
+
+      const classId = classResponse.data._id;
+
+      // Step 3: Create the user with the class ID
       const response = await axios.post("http://localhost:3001/register", {
         username,
         password,
+        classId, // Use the newly created class ID
       });
 
       setMessage(response.data.msg || "Account created successfully!");
-
       navigate("/");
     } catch (error) {
       if (error.response) {
@@ -73,6 +81,19 @@ const CreateAccount = () => {
             required
           />
 
+          <label htmlFor="class" className="class-label">
+            Class
+          </label>
+          <input
+            type="text"
+            id="class"
+            name="classInput" // Changed name to classInput
+            placeholder="Enter your class"
+            value={className}
+            onChange={(e) => setClassName(e.target.value)}
+            required
+          />
+
           <div className="password-guidelines">
             <ul>
               <li>Use 8 or more characters</li>
@@ -86,7 +107,7 @@ const CreateAccount = () => {
             {isSubmitting ? "Creating account..." : "Sign up"}
           </button>
         </form>
-        {message && <p className="message">{message}</p>}{" "}
+        {message && <p className="message">{message}</p>}
         <p className="terms">
           By creating an account, you agree to the{" "}
           <a href="/terms">terms of use</a> and{" "}
