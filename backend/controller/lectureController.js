@@ -62,14 +62,10 @@ export const getLecturesByDayForClass = async (req, res) => {
 
     const lectures = await Lecture.find({ day, class: trimmedClassId });
 
-    if (lectures.length === 0) {
-      return res.status(404).json({
-        message: `No lectures found for class ${trimmedClassId} on ${day}`,
-      });
-    }
-
-    res.status(200).json(lectures);
+    // Return empty array if no lectures found
+    res.status(200).json(lectures.length ? lectures : []);
   } catch (error) {
+    console.error("Error retrieving lectures:", error);
     res
       .status(500)
       .json({ error: "Failed to retrieve lectures", message: error.message });
@@ -81,17 +77,15 @@ export const updateLecture = async (req, res) => {
     const lectureId = req.params.id;
     const { subject, classId, time } = req.body;
 
-    
     const existingClass = await Class.findById(classId);
     if (!existingClass) {
       return res.status(404).json({ error: "Class not found" });
     }
 
-
     const updatedLecture = await Lecture.findByIdAndUpdate(
       lectureId,
       { subject, class: classId, time },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!updatedLecture) {
@@ -100,7 +94,9 @@ export const updateLecture = async (req, res) => {
 
     res.status(200).json(updatedLecture);
   } catch (error) {
-    res.status(500).json({ error: "Failed to update lecture", message: error.message });
+    res
+      .status(500)
+      .json({ error: "Failed to update lecture", message: error.message });
   }
 };
 
@@ -115,6 +111,8 @@ export const deleteLecture = async (req, res) => {
 
     res.status(200).json({ message: "Lecture deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete lecture", message: error.message });
+    res
+      .status(500)
+      .json({ error: "Failed to delete lecture", message: error.message });
   }
 };

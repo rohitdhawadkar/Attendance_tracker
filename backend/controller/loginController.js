@@ -7,38 +7,35 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Find user by username
-    const CurrentUser = await User.findOne({ username });
+    const CurrentUser = await User.findOne({ username }).populate("class");
     if (!CurrentUser) {
-      return res.status(200).json({ msg: "User not found" });
+      return res.status(404).json({ msg: "User not found" }); // Changed to 404
     }
+
+    // Extract classId if the user has a class associated
+    const classId = CurrentUser.class ? CurrentUser.class._id : null;
 
     // Compare passwords
     const isMatch = await bcrypt.compare(password, CurrentUser.password);
     if (!isMatch) {
-      return res.status(200).json({ msg: "Invalid password" });
+      return res.status(401).json({ msg: "Invalid password" }); // Changed to 401
     }
 
     // Generate JWT token
-    const generateToken = (username) => {
-      return jwt.sign({ username }, process.env.JWT_SECRET, {
+    const generateToken = (username, classId) => {
+      return jwt.sign({ username, classId }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
     };
 
-    const token = generateToken(CurrentUser.username);
+    const token = generateToken(CurrentUser.username, classId);
 
-    // Setting the cookie with the generated token
-    return res
-      .cookie("token", token, {
-        // Corrected from jwtToken to token
-        httpOnly: true, // Not accessible by JavaScript
-        secure: true, // Only sent over HTTPS
-        sameSite: "Strict", // Prevent CSRF
-        maxAge: 3600000, // 1 hour expiration
-      })
-      .status(200)
-      .json({ msg: "Login successful" });
+    // Send response without setting a cookie
+    return res.status(200).json({
+      msg: "Login successful",
+      classId, // Return classId if available
+      token, // Send the token in the response
+    });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ errors: error.errors });
