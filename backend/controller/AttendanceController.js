@@ -1,7 +1,7 @@
 import Attendance from "../models/attendance.js";
 import Lecture from "../models/lecture.js";
-import User from "../models/user.js";
 
+import User from "../models/user.js";
 
 export const createAttendance = async (req, res) => {
   try {

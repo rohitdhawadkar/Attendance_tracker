@@ -5,6 +5,6 @@ import v from "../middleware/validation.js";
 
 const router = express.Router();
 
-router.post("/register", registerUser);
+router.post("/register", v(registerSchema), registerUser);
 
 export default router;

@@ -4,20 +4,19 @@ import {
   createLecture,
   getLecturesByDayForClass,
   updateLecture,
-  deleteLecture
-
+  deleteLecture,
 } from "../controller/lectureController.js";
 import v from "../middleware/validation.js";
-import LectureSchemaValidation from "../validations/lectureSchema.js"
+import LectureSchemaValidation from "../validations/lectureSchema.js";
 
 const router = express.Router();
 
-router.post("/addlecture", auth,v(LectureSchemaValidation), createLecture);
+router.post("/addlecture", auth, createLecture);
 
 router.get("/getlectureforday/:day/:classId", auth, getLecturesByDayForClass);
 
-router.put("updateLecture/:id",auth,updateLecture);
+router.put("updateLecture/:id", auth, updateLecture);
 
-router.delete("deleteLecture/:id",auth,deleteLecture);
+router.delete("deleteLecture/:id", auth, deleteLecture);
 
 export default router;

@@ -1,13 +1,14 @@
+import cors from "cors";
+import crypto from "crypto";
 import express from "express";
 import helmet from "helmet";
-import crypto from "crypto";
-import cors from "cors";
-import registerUser from "./routes/registerRoute.js";
-import login from "./routes/loginRoute.js";
 import connectDB from "./config/db.js";
 import classRoute from "./routes/classRoute.js";
 import lectureRoute from "./routes/lectureRoute.js";
+import login from "./routes/loginRoute.js";
 import logoutRoute from "./routes/logoutRoute.js";
+import registerUser from "./routes/registerRoute.js";
+import SubjectController from "./routes/SubjectRoutes.js";
 
 import a from "./routes/AttendanceRoute.js";
 
@@ -43,6 +44,7 @@ app.post("/login", login);
 app.use("/class", classRoute);
 app.post("/logout", logoutRoute);
 app.use("/lectures", lectureRoute);
+app.use("/Subjects", SubjectController);
 
 const port = 3001;
 app.listen(port, () => {

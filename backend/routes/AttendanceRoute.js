@@ -14,7 +14,7 @@ import v from "../middleware/validation.js";
 
 const router = express.Router();
 
-router.post("/", auth, v(attendanceSchema), createAttendance);
+router.post("/att", auth, createAttendance);
 
 router.get("/", getAllAttendance);
 

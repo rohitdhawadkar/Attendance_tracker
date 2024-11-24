@@ -3,7 +3,7 @@ import Class from "./class.js";
 
 const lectureSchema = new mongoose.Schema({
   subject: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   class: {
