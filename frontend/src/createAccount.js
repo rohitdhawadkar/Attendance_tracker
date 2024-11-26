@@ -18,9 +18,12 @@ const CreateAccount = () => {
     setMessage("");
 
     try {
-      const classResponse = await axios.post("http://localhost:3001/addclass", {
-        className,
-      });
+      const classResponse = await axios.post(
+        "http://localhost:3001/class/addclass",
+        {
+          className,
+        },
+      );
 
       const classId = classResponse.data._id;
 

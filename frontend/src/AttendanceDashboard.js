@@ -13,19 +13,33 @@ const AttendanceDashboard = () => {
   const [activeLecture, setActiveLecture] = useState(null);
   const [attendance, setAttendance] = useState({});
   const [showNoLecturesPopup, setShowNoLecturesPopup] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(getCurrentDay());
+
   const navigate = useNavigate();
 
-  // Get the current day name
-  const getCurrentDay = () => {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  function getCurrentDay() {
     const today = new Date();
     const options = { weekday: "long" };
     return today.toLocaleDateString("en-US", options);
-  };
+  }
 
   useEffect(() => {
+    fetchSchedule(selectedDay); // Fetch schedule when selected day changes
+  }, [selectedDay]);
+
+  const fetchSchedule = (day) => {
     const token = localStorage.getItem("token");
     const classId = localStorage.getItem("classId");
-    const day = getCurrentDay();
 
     if (token && classId) {
       axios
@@ -57,7 +71,7 @@ const AttendanceDashboard = () => {
       console.error("Token or Class ID not found in local storage");
       navigate("/login");
     }
-  }, []);
+  };
 
   const chartData = {
     labels: ["Theory", "Practical"],
@@ -97,9 +111,35 @@ const AttendanceDashboard = () => {
     setActiveLecture(index);
   };
 
-  const markAttendance = (index, status) => {
+  // Mark attendance and send to the backend
+  const markAttendance = async (index, status) => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId"); // Assuming user ID is stored in localStorage
+    const lectureId = schedule[index]._id; // Get the lecture ID from the schedule
+
+    // Update local attendance state
     setAttendance({ ...attendance, [index]: status });
     setActiveLecture(null);
+
+    // Send attendance to the backend
+    try {
+      await axios.post(
+        "http://localhost:3001/attendance/att",
+        {
+          lecture: lectureId,
+          status: status,
+          user: userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      console.log(`Attendance marked as ${status} for lecture ${lectureId}`);
+    } catch (error) {
+      console.error("Error saving attendance:", error);
+    }
   };
 
   const handleAddLecture = () => {
@@ -107,9 +147,12 @@ const AttendanceDashboard = () => {
     navigate("/add-lecture");
   };
 
+  const handleDayChange = (event) => {
+    setSelectedDay(event.target.value); // Update the selected day
+  };
+
   return (
     <div className="dashboard">
-      {/* Header with search and icons */}
       <div className="header">
         <input type="text" placeholder="Search..." className="search-bar" />
         <div className="nav-icons">
@@ -133,6 +176,24 @@ const AttendanceDashboard = () => {
       {/* Content area */}
       <div className="content">
         <h1>Today is {getCurrentDay()}</h1>
+
+        {/* Dropdown to select day */}
+        <div className="day-selector">
+          <label htmlFor="day">Select Day:</label>
+          <select
+            id="day"
+            value={selectedDay}
+            onChange={handleDayChange}
+            className="day-dropdown"
+          >
+            {daysOfWeek.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="attendance-card">
           <h2>Current Attendance</h2>
           <button className="total-btn">Total</button>
@@ -148,6 +209,7 @@ const AttendanceDashboard = () => {
             </span>
           </div>
         </div>
+
         <div className="upcoming-card">
           <h2>Upcoming Lecture/Practical</h2>
           <div className="lecture-list">
